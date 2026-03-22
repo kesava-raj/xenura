@@ -43,6 +43,12 @@ const CASE_STUDIES = {
   }
 };
 
+export async function generateStaticParams() {
+  return Object.keys(CASE_STUDIES).map((slug) => ({
+    slug: slug,
+  }));
+}
+
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const study = CASE_STUDIES[slug as keyof typeof CASE_STUDIES];
