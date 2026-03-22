@@ -23,11 +23,11 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>Industries</h4>
-          <a href="#">E-Commerce</a>
-          <a href="#">Fintech</a>
-          <a href="#">Healthcare</a>
-          <a href="#">EdTech</a>
-          <a href="#">SaaS Startups</a>
+          <Link href="/case-studies">E-Commerce</Link>
+          <Link href="/case-studies">Fintech</Link>
+          <Link href="/case-studies">Healthcare</Link>
+          <Link href="/case-studies">EdTech</Link>
+          <Link href="/case-studies">SaaS Startups</Link>
         </div>
         <div className="footer-col">
           <h4>Company</h4>

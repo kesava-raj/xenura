@@ -1,62 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Home() {
-  useEffect(() => {
-    // REVEAL ON SCROLL
-    const reveals = document.querySelectorAll(".reveal");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add("visible");
-        });
-      },
-      { threshold: 0.12 }
-    );
-    reveals.forEach((el) => observer.observe(el));
-
-    // COUNTER ANIMATION
-    function animateCounter(el: Element, target: number, suffix = "") {
-      let start = 0;
-      const dur = 1800;
-      const step = (timestamp: number) => {
-        if (!start) start = timestamp;
-        const progress = Math.min((timestamp - start) / dur, 1);
-        const ease = 1 - Math.pow(1 - progress, 3);
-        el.textContent = Math.floor(ease * target) + suffix;
-        if (progress < 1) requestAnimationFrame(step);
-        else el.textContent = target + suffix;
-      };
-      requestAnimationFrame(step);
-    }
-
-    const statsObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            const nums = e.target.querySelectorAll(".stat-num");
-            nums.forEach((n) => {
-              const text = n.textContent || "";
-              const num = parseInt(text, 10);
-              const suffix = text.replace(num.toString(), "");
-              animateCounter(n, num, suffix);
-            });
-            statsObserver.disconnect();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-    const stats = document.querySelector(".hero-stats");
-    if (stats) statsObserver.observe(stats);
-
-    return () => {
-      observer.disconnect();
-      statsObserver.disconnect();
-    };
-  }, []);
-
   return (
     <>
       {/* ─── HERO ─── */}
@@ -129,7 +75,7 @@ export default function Home() {
             </p>
           </div>
           <div className="services-grid">
-            <div className="service-card reveal reveal-delay-1">
+            <Link href="/services/artificial-intelligence" className="service-card reveal reveal-delay-1" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-num">01</div>
               <div className="service-icon">🤖</div>
               <div className="service-title">Artificial Intelligence</div>
@@ -138,8 +84,8 @@ export default function Home() {
                 pipelines, and intelligent automation that transforms operations.
               </p>
               <span className="service-arrow">↗</span>
-            </div>
-            <div className="service-card reveal reveal-delay-2">
+            </Link>
+            <Link href="/services/data-engineering" className="service-card reveal reveal-delay-2" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-num">02</div>
               <div className="service-icon">⚡</div>
               <div className="service-title">Data Engineering</div>
@@ -148,8 +94,8 @@ export default function Home() {
                 streaming architectures built for scale.
               </p>
               <span className="service-arrow">↗</span>
-            </div>
-            <div className="service-card reveal reveal-delay-3">
+            </Link>
+            <Link href="/services/digital-analytics" className="service-card reveal reveal-delay-3" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-num">03</div>
               <div className="service-icon">📊</div>
               <div className="service-title">Digital Analytics</div>
@@ -158,8 +104,8 @@ export default function Home() {
                 data-driven strategies that turn metrics into growth.
               </p>
               <span className="service-arrow">↗</span>
-            </div>
-            <div className="service-card reveal reveal-delay-1">
+            </Link>
+            <Link href="/services/product-engineering" className="service-card reveal reveal-delay-1" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-num">04</div>
               <div className="service-icon">🛠</div>
               <div className="service-title">Product Engineering</div>
@@ -168,8 +114,8 @@ export default function Home() {
                 Python — delivering fast, scalable digital products.
               </p>
               <span className="service-arrow">↗</span>
-            </div>
-            <div className="service-card reveal reveal-delay-2">
+            </Link>
+            <Link href="/services/cloud-devops" className="service-card reveal reveal-delay-2" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="service-num">05</div>
               <div className="service-icon">☁️</div>
               <div className="service-title">Cloud & DevOps</div>
@@ -178,7 +124,7 @@ export default function Home() {
                 orchestration, and 24/7 infrastructure reliability.
               </p>
               <span className="service-arrow">↗</span>
-            </div>
+            </Link>
             <div
               className="service-card reveal reveal-delay-3"
               style={{
@@ -193,7 +139,7 @@ export default function Home() {
                 Have a custom challenge? Our team architects solutions tailored
                 to your exact needs and industry context.
               </p>
-              <a
+              <Link
                 href="#contact"
                 className="btn-primary"
                 style={{
@@ -204,7 +150,7 @@ export default function Home() {
                 }}
               >
                 Talk to Us
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -348,71 +294,72 @@ export default function Home() {
             </p>
           </div>
           <div className="ind-grid">
-            <div className="ind-card reveal reveal-delay-1">
+            <Link href="/case-studies/retail-ai-personalization" className="ind-card reveal reveal-delay-1" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">🛒</div>
               <div className="ind-name">E-Commerce</div>
               <p className="ind-desc">
                 Personalization engines, recommendation AI, and scalable
                 storefronts.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-2">
+            </Link>
+            <Link href="/case-studies/fintech-security-overhaul" className="ind-card reveal reveal-delay-2" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">💳</div>
               <div className="ind-name">Fintech</div>
               <p className="ind-desc">
                 Fraud detection, real-time payments, and regulatory-compliant
                 data systems.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-3">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-3" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">🏥</div>
               <div className="ind-name">Healthcare</div>
               <p className="ind-desc">
                 Clinical AI, HIPAA-compliant platforms, and patient data
                 analytics.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-4">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-4" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">🎓</div>
               <div className="ind-name">EdTech</div>
               <p className="ind-desc">
                 Adaptive learning, LMS platforms, and engagement analytics.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-1">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-1" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">✈️</div>
               <div className="ind-name">Travel & Aviation</div>
               <p className="ind-desc">
                 Booking systems, dynamic pricing, and operational intelligence.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-2">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-2" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">🚀</div>
               <div className="ind-name">SaaS Startups</div>
               <p className="ind-desc">
                 MVP development, growth infrastructure, and product-led
                 engineering.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-3">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-3" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">📡</div>
               <div className="ind-name">Media</div>
               <p className="ind-desc">
                 Content intelligence, audience analytics, and streaming
                 platforms.
               </p>
-            </div>
-            <div className="ind-card reveal reveal-delay-4">
+            </Link>
+            <Link href="/case-studies" className="ind-card reveal reveal-delay-4" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div className="ind-icon">🏭</div>
               <div className="ind-name">Manufacturing</div>
               <p className="ind-desc">
                 Predictive maintenance, IoT integration, and supply chain
                 analytics.
               </p>
-            </div>
-            <div
+            </Link>
+            <Link
+              href="/case-studies/logistics-route-optimization"
               className="ind-card reveal reveal-delay-1"
-              style={{ gridColumn: "1/-1", maxWidth: "300px" }}
+              style={{ gridColumn: "1/-1", maxWidth: "300px", textDecoration: 'none', color: 'inherit' }}
             >
               <div className="ind-icon">📦</div>
               <div className="ind-name">Logistics & Supply Chain</div>
@@ -420,7 +367,7 @@ export default function Home() {
                 Route optimization, demand forecasting, and real-time tracking
                 systems.
               </p>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

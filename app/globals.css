@@ -13,9 +13,6 @@
   --muted: #4a6880;
   --border: rgba(10,240,200,0.1);
   --card: rgba(8,17,30,0.8);
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Outfit', sans-serif;
-  --font-mono: 'DM Mono', monospace;
 }
  
 html { scroll-behavior: smooth; }
@@ -746,18 +743,80 @@ footer {
 }
  
 /* ─── MOBILE ─── */
-.hamburger { display: none; }
+.desktop-only { display: block; }
+.mobile-only { display: none; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s;
+  transform-origin: left;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg); }
+
 @media (max-width: 900px) {
-  .nav-links { display: none; }
+  .desktop-only { display: none; }
+  .mobile-only { display: block; }
+  
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    padding: 0;
+  }
+  .nav-links.active { transform: translateX(0); }
+  .nav-links > li > a { font-size: 24px; font-family: var(--font-display); font-weight: 700; color: var(--text); }
+  
+  .dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    text-align: center;
+    padding: 10px 0 0;
+    min-width: 0;
+  }
+  .dropdown a { justify-content: center; font-size: 14px; }
+  .dropdown a::before { display: none; }
+
   .hamburger { display: flex; }
   .services-grid { grid-template-columns: 1fr; }
   .about-grid { grid-template-columns: 1fr; }
   .ind-grid { grid-template-columns: repeat(2,1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .cta-grid { grid-template-columns: 1fr; }
-  .hero-stats { gap: 30px; }
+  .hero-stats { gap: 30px; flex-wrap: wrap; }
   .stat-div { display: none; }
   .cat-item { flex-direction: column; align-items: flex-start; }
   nav { padding: 0 24px; }
   .section-inner { padding: 0 24px; }
 }
+
