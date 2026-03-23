@@ -162,7 +162,7 @@ export default function Home() {
           <div className="about-grid">
             <div className="about-visual reveal">
               <div className="about-box">
-                <div className="about-tag-float tag-tl">{"// XENURA_CORE v2.5"}</div>
+                <div className="about-tag-float tag-tl">XENURA_CORE v2.5</div>
                 <div className="about-geo">
                   <div className="about-geo-inner"></div>
                 </div>
